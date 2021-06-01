@@ -39,15 +39,18 @@ function checkSecond(sec) {
 }
 
 function pauseTimer() {
+    startBtn.prop('disabled', false);
     clearInterval(timer);
 }
 
 function resetTimer() {
+    startBtn.prop('disabled', false);
     clearInterval(timer);
     timerEl.text('25:00');
 }
 
 startBtn.on('click', function(){
+    startBtn.prop('disabled', true);
     timer = setInterval(startTimer, 1000);
 });
 pauseBtn.on('click', pauseTimer);
