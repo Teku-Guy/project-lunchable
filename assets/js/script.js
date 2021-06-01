@@ -23,7 +23,8 @@ function startTimer() {
 
     if(m == 0 && s == 00){
         clearInterval(timer);
-        alert('times up')
+        console.log('times up!');
+        alertUser();
     }
 }
 
@@ -48,6 +49,12 @@ function resetTimer() {
     clearInterval(timer);
     timerEl.text('25:00');
 }
+
+function alertUser() {
+    var alarm = new Audio('./assets/mp3/siren.mp3');
+    alarm.play();
+}
+
 
 startBtn.on('click', function(){
     startBtn.prop('disabled', true);
