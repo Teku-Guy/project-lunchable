@@ -81,8 +81,8 @@ fetch(dadJokeURL, {
 })
 .then(function(response) {
 	console.log(response);
-  $('.card-title').text(response.body[0].setup);
-  $('.p').text(response.body[0].punchline);
+  $('#t').text(response.body[0].setup);
+  $('#p').text(response.body[0].punchline);
 })
 .catch(function(err) {
 	console.error(err);
