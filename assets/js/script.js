@@ -79,44 +79,42 @@ resetBtn.on("click", resetTimer);
 
 $(document).ready(function(){
   $('.modal').modal();
+  $('.sidenav').sidenav();
 });
 
+function genDadJoke() {
+  fetch(dadJokeURL, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-key": "7b1a003bf5msh1ca0da65978ae8cp106aebjsn81c5d0c4c3de",
+      "x-rapidapi-host": "dad-jokes.p.rapidapi.com"
+    }
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) {
+    console.log(response);
+    $('#t').text(response.body[0].setup);
+    $('#p').text(response.body[0].punchline);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+}
 
-fetch(dadJokeURL, {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "7b1a003bf5msh1ca0da65978ae8cp106aebjsn81c5d0c4c3de",
-		"x-rapidapi-host": "dad-jokes.p.rapidapi.com"
-	}
-})
-.then(function(response) {
-  return response.json();
-})
-.then(function(response) {
-	console.log(response);
-  $('#t').text(response.body[0].setup);
-  $('#p').text(response.body[0].punchline);
-})
-.catch(function(err) {
-	console.error(err);
-});
-
-fetch(ytURL)
-.then(function(response) {
-  return response.json();
-})
-.then(function(response) {
-	console.log(response);
-  vidID = response.items[0].id.videoId;
-  $('#p1').append("<iframe height='300px' width='300px' src='https://www.youtube.com/watch?v="+response.items[0].id.videoId +"></iframe>");
-  
-
-<iframe id="player" type="text/html" width="640" height="390"
-  src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
-  frameborder="0"></iframe>
-  console.log("https://www.youtube.com/watch?v="+response.items[0].id.videoId);
-  //$('#p1').text(response);
-})
-.catch(function(err) {
-	console.error(err);
-});
+function genYTVid() {
+  fetch(ytURL)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) {
+    console.log(response);
+    vidID = response.items[0].id.videoId;
+    $('#p1').append("<iframe height='200px' width='200px' src='https://www.youtube.com/embed/"+response.items[0].id.videoId +"'></iframe>");
+    //$('#p1').text(response);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+}
