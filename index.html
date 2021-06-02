@@ -11,7 +11,93 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">MemeBreak</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a class="waves-effect waves-light btn">Button</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card blue-grey small darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title center">Timer</span>
+                            <span id="sessionType" class="card-title center">Work</span>
+                            <h1 id="timer" class="center">25:00</h1>
+                        </div>
+                        <div class="card-action">
+                            <button id="start" class="waves-effect waves-light btn">
+                                Start
+                            </button>
+                            <button id="pause" class="waves-effect waves-light btn">
+                                Pause
+                            </button>
+                            <button id="reset" class="waves-effect waves-light btn">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 l6">
+                    <div class="card blue-grey small darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Card Title</span>
+                            <p>
+                                I am a very simple card. I am good at containing small bits of
+                                information. I am convenient because I require little markup
+                                to use effectively.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 l6">
+                    <div class="card blue-grey small darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Card Title</span>
+                            <p class="p">
+                                I am a very simple card. I am good at containing small bits of
+                                information. I am convenient because I require little markup
+                                to use effectively.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
