@@ -5,12 +5,22 @@ var timerEl = $("#timer");
 
 var timer;
 
-<<<<<<< HEAD
-var apiKey = '';
+var apiKeyYT = 'AIzaSyDlaG8-63OAjGuE5gbPJQILNHz2fGH1qC8';
+var q = makeid(3);
+var ytURL = 'https://www.googleapis.com/youtube/v3/search?key='+ apiKeyYT +'&maxResults=1&part=snippet&type=video&q='+ q;
 var dadJokeURL = 'https://dad-jokes.p.rapidapi.com/random/joke';
 
-=======
->>>>>>> 216dfcbbfa6a2778c5eb752d09ac6d4d4d98dd66
+function makeid(length = 10) {
+  //gen random string to look into youtubes api
+  var result           = [];
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+  }
+ return result.join('');
+}
+
 function startTimer() {
   var presentTime = timerEl.text(); //set 25min timer
   var timeArry = presentTime.split(/[:]+/); //split the the time into min and sec in an array
@@ -90,11 +100,23 @@ fetch(dadJokeURL, {
 .catch(function(err) {
 	console.error(err);
 });
-// Nav for Mobile
-$(document).ready(function () {
-  $('.sidenav').sidenav();
-});
 
-$(document).ready(function () {
-  $('.modal').modal();
+fetch(ytURL)
+.then(function(response) {
+  return response.json();
+})
+.then(function(response) {
+	console.log(response);
+  vidID = response.items[0].id.videoId;
+  $('#p1').append("<iframe height='300px' width='300px' src='https://www.youtube.com/watch?v="+response.items[0].id.videoId +"></iframe>");
+  
+
+<iframe id="player" type="text/html" width="640" height="390"
+  src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
+  frameborder="0"></iframe>
+  console.log("https://www.youtube.com/watch?v="+response.items[0].id.videoId);
+  //$('#p1').text(response);
+})
+.catch(function(err) {
+	console.error(err);
 });
