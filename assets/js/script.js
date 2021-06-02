@@ -4,6 +4,9 @@ var resetBtn = $("#reset");
 var timerEl = $("#timer");
 
 var timer;
+var sessionTypeEl = $('#sessionType');
+var workStatus = true;
+var counter = 0;
 
 var apiKeyYT = 'AIzaSyDlaG8-63OAjGuE5gbPJQILNHz2fGH1qC8';
 var q = makeid(3);
@@ -40,7 +43,31 @@ function startTimer() {
     clearInterval(timer);
     console.log("times up!");
     alertUser();
+    startBtn.prop("disabled", false);
+    if(counter == 0){
+      checkStatus(true);
+      debugger
+      counter++;
+    } else if(counter == 1){
+      checkStatus(false);
+      counter--;
+    }
   }
+}
+
+function checkStatus(a){
+  if(a){
+    return workStatus = false;
+  }
+  if(!a) {
+    sessionTypeEl.text('Work');
+    return workStatus = true;
+  }
+}
+
+function setBreakTimer(){
+  timerEl.text('00:02');
+  sessionTypeEl.text('Break Time!');
 }
 
 function checkSecond(sec) {
@@ -72,9 +99,15 @@ function alertUser() {
   //opens modal
   $('.modal').modal('open');
   $('#dismiss').on('click', function(){
-    genDadJoke();
-    genYTVid();
     alarm.pause();
+    if(!workStatus){
+      genDadJoke();
+      genYTVid();
+      setBreakTimer();
+    }
+    if(workStatus) {
+      timerEl.text('25:00')
+    }
   });
 }
 
@@ -91,6 +124,8 @@ $(document).ready(function(){
 });
 
 function genDadJoke() {
+  // $('#t').remove();
+  // $('#p').remove();
   fetch(dadJokeURL, {
     "method": "GET",
     "headers": {
@@ -112,13 +147,13 @@ function genDadJoke() {
 }
 
 function genYTVid() {
+ //$('#p1').remove();
   fetch(ytURL)
   .then(function(response) {
     return response.json();
   })
   .then(function(response) {
     console.log(response);
-    vidID = response.items[0].id.videoId;
     $('#p1').append("<iframe height='200px' width='200px' src='https://www.youtube.com/embed/"+response.items[0].id.videoId +"'></iframe>");
     //$('#p1').text(response);
   })
