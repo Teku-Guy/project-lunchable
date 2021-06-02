@@ -67,12 +67,15 @@ function resetTimer() {
 
 function alertUser() {
   var alarm = new Audio("./assets/mp3/siren.mp3");
+  alarm.loop = true;
   alarm.play();
   //opens modal
   $('.modal').modal('open');
   $('#dismiss').on('click', function(){
+    genDadJoke();
+    genYTVid();
     alarm.pause();
-  })
+  });
 }
 
 startBtn.on("click", function () {
