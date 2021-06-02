@@ -3,7 +3,6 @@ var pauseBtn = $("#pause");
 var resetBtn = $("#reset");
 var timerEl = $("#timer");
 
-var chunckTime = 25;
 var timer;
 
 function startTimer() {
