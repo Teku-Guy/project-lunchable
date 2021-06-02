@@ -5,6 +5,22 @@ var timerEl = $("#timer");
 
 var timer;
 
+var apiKeyYT = 'AIzaSyDlaG8-63OAjGuE5gbPJQILNHz2fGH1qC8';
+var q = makeid(3);
+var ytURL = 'https://www.googleapis.com/youtube/v3/search?key='+ apiKeyYT +'&maxResults=1&part=snippet&type=video&q='+ q;
+var dadJokeURL = 'https://dad-jokes.p.rapidapi.com/random/joke';
+
+function makeid(length = 10) {
+  //gen random string to look into youtubes api
+  var result           = [];
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+  }
+ return result.join('');
+}
+
 function startTimer() {
   var presentTime = timerEl.text(); //set 25min timer
   var timeArry = presentTime.split(/[:]+/); //split the the time into min and sec in an array
@@ -61,7 +77,44 @@ startBtn.on("click", function () {
 pauseBtn.on("click", pauseTimer);
 resetBtn.on("click", resetTimer);
 
-$(document).ready(function () {
+$(document).ready(function(){
   $('.modal').modal();
   $('.sidenav').sidenav();
 });
+
+function genDadJoke() {
+  fetch(dadJokeURL, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-key": "7b1a003bf5msh1ca0da65978ae8cp106aebjsn81c5d0c4c3de",
+      "x-rapidapi-host": "dad-jokes.p.rapidapi.com"
+    }
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) {
+    console.log(response);
+    $('#t').text(response.body[0].setup);
+    $('#p').text(response.body[0].punchline);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+}
+
+function genYTVid() {
+  fetch(ytURL)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) {
+    console.log(response);
+    vidID = response.items[0].id.videoId;
+    $('#p1').append("<iframe height='200px' width='200px' src='https://www.youtube.com/embed/"+response.items[0].id.videoId +"'></iframe>");
+    //$('#p1').text(response);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+}
