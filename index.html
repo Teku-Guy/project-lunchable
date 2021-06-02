@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="Tab Icon" href="assets/images/iconmonstr-loading-13.svg" />
     <title>Team Lunchables</title>
 
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
     <header>
         <nav>
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center">MemeBreak</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">Words</a></li>
+                    <li><a href="#">More Words</a></li>
                     <li><a class="waves-effect waves-light btn">Button</a></li>
                 </ul>
             </div>
         </nav>
+
+        <!--Nav for Mobile-->
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#">Words</a></li>
+            <li><a href="#">More Words</a></li>
+        </ul>
     </header>
+
     <main>
         <div class="container">
             <div class="row">
@@ -91,16 +107,31 @@
             <h4>Modal Header</h4>
             <p>A bunch of text</p>
         </div>
-
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
     </div>
 
-
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="center col s12">
+                    <h5 class="white-text">Meet the Team</h5>
+                    <p class="grey-text text-lighten-4">Going to practice here</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Team Lunchables
+                <a id="gitHubLink " class="grey-text text-lighten-4" href="#">GitHub Link</a>
+            </div>
+        </div>
+    </footer>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

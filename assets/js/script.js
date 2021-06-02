@@ -5,9 +5,12 @@ var timerEl = $("#timer");
 
 var timer;
 
+<<<<<<< HEAD
 var apiKey = '';
 var dadJokeURL = 'https://dad-jokes.p.rapidapi.com/random/joke';
 
+=======
+>>>>>>> 216dfcbbfa6a2778c5eb752d09ac6d4d4d98dd66
 function startTimer() {
   var presentTime = timerEl.text(); //set 25min timer
   var timeArry = presentTime.split(/[:]+/); //split the the time into min and sec in an array
@@ -86,4 +89,12 @@ fetch(dadJokeURL, {
 })
 .catch(function(err) {
 	console.error(err);
+});
+// Nav for Mobile
+$(document).ready(function () {
+  $('.sidenav').sidenav();
+});
+
+$(document).ready(function () {
+  $('.modal').modal();
 });
