@@ -68,6 +68,11 @@ function resetTimer() {
 function alertUser() {
   var alarm = new Audio("./assets/mp3/siren.mp3");
   alarm.play();
+  //opens modal
+  $('.modal').modal('open');
+  $('#dismiss').on('click', function(){
+    alarm.pause();
+  })
 }
 
 startBtn.on("click", function () {
