@@ -62,6 +62,11 @@ startBtn.on("click", function () {
 pauseBtn.on("click", pauseTimer);
 resetBtn.on("click", resetTimer);
 
-$(document).ready(function(){
+// Nav for Mobile
+$(document).ready(function () {
+  $('.sidenav').sidenav();
+});
+
+$(document).ready(function () {
   $('.modal').modal();
 });
