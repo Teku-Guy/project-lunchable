@@ -18,9 +18,19 @@
 
 <body>
     <header>
+        <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">one hour</a></li>
+    <li><a href="#!">two hours</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three hours</a></li>
+  </ul>
         <nav>
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo center">Take 5</a>
+                <ul class="right hide-on-med-and-down">
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Worktime Presets<i class="material-icons right">arrow_drop_down</i></a></li>
             </div>
         </nav>
     </header>
@@ -29,10 +39,10 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <div class="card blue-grey small darken-1">
+                    <div id= "timer" class="card small darken-1">
                         <div class="card-content white-text">
-                            <span class="card-title center">Timer</span>
-                            <span id="sessionType" class="card-title center">Work</span>
+                            <span class="card-title center">The Countdown </span>
+                            <span id="sessionType" class="card-title center">Focus Time</span>
                             <h1 id="timer" class="center">00:05</h1>
                         </div>
                         <div class="card-action">
@@ -49,9 +59,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12 m12 l12">
-                    <div class="card blue-grey small darken-1">
+            <div  class="row">
+                <div  class="col s12 m12 l12">
+                    <div id= "breakCards" class="card small darken-1">
                         <div class="card-content white-text">
                             <span id="t1" class="center card-title">YouTube Break</span>
                             <p id="p1">
@@ -60,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l12">
-                    <div class="card blue-grey small darken-1">
+                    <div id= "breakCards" class="card small darken-1">
                         <div class="card-content white-text">
                             <span id="t" class="center card-title">Dad Jokes</span>
                             <p id="p">

@@ -1,3 +1,27 @@
+nav {
+  background-color: #fb8c00;
+}
+
+#timer {
+  background-color: #c5e1a5;
+}
+#theCountDown {
+  font-family: sans-serif;
+  font-size: larger;
+  font-weight: bold;
+}
+#breakCards {
+  background-color: #bcaaa4;
+}
+
+#modal1 {
+  background-color: #ffab40;
+}
+
+.page-footer {
+  background-color: #fb8c00;
+}
+
 footer {
   margin-top: 1.5rem;
 }
