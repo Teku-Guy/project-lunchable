@@ -13,6 +13,8 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
@@ -20,7 +22,29 @@
     <header>
         <nav>
             <div class="nav-wrapper">
+                <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Presets</a>
+
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4 id="presetModal">Create a Preset</h4>
+      <p id=pDescription> Enter the name of the preset you would like to save, then enter the amount of time you would like to spend.</p>
+      <div id="presets" class="input-field col s12"></div>
+      <form>
+        <label class="preLabel" for="pName">Preset Name</label>
+        <input placeholder="ex. work" id="pName" type=text>
+        <label class="preLabel" for="pTime">Enter Time</label>
+        <input id="pTime" type="text" placeholder="HH:MM">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="pSubmit" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>
+  </div>
                 <a href="/" class="brand-logo center">Take 5</a>
+    </div>
+  </div>    
             </div>
         </nav>
     </header>
@@ -29,11 +53,14 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <div class="card blue-grey small darken-1">
+                    <div class= "timer" class="card small darken-1">
                         <div class="card-content white-text">
-                            <span class="card-title center">Timer</span>
-                            <span id="sessionType" class="card-title center">Work</span>
-                            <h1 id="timer" class="center">00:05</h1>
+                            <span id="theCountDown" class="card-title center">The Countdown </span>
+                            <p></p>
+                            <span id="sessionType" class="card-title center">Focus Time</span>
+                        </p>
+                            <h1 id="timer" 
+                            class="center">00:05</h1>
                         </div>
                         <div class="card-action">
                             <button id="start" class="waves-effect waves-light btn">
@@ -49,9 +76,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12 m12 l12">
-                    <div class="card blue-grey small darken-1">
+            <div  class="row">
+                <div  class="col s12 m12 l12">
+                    <div id= "breakCards" class="card small darken-1">
                         <div class="card-content white-text">
                             <span id="t1" class="center card-title">YouTube Break</span>
                             <p id="p1">
@@ -60,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l12">
-                    <div class="card blue-grey small darken-1">
+                    <div id= "breakCards" class="card small darken-1">
                         <div class="card-content white-text">
                             <span id="t" class="center card-title">Dad Jokes</span>
                             <p id="p">

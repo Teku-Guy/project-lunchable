@@ -3,10 +3,18 @@ var pauseBtn = $("#pause");
 var resetBtn = $("#reset");
 var timerEl = $("#timer");
 
+var pName = $('#pName');
+var pTime = $('#pTime');
+var pSubmitBtn = $('#pSubmit');
+var savedPresets = JSON.parse(localStorage.getItem("presets")) || [['Default', '4:00']];
+var presetsArry = [];
+
 var timer;
 var sessionTypeEl = $('#sessionType');
 var workStatus = true;
 var counter = 0;
+
+var pomoCounter = 0;
 
 var apiKeyYT = 'AIzaSyDlaG8-63OAjGuE5gbPJQILNHz2fGH1qC8';
 var q = makeid(3);
@@ -25,6 +33,7 @@ function makeid(length = 10) {
 }
 
 function startTimer() {
+  loadPreset();
   var presentTime = timerEl.text(); //set 25min timer
   var timeArry = presentTime.split(/[:]+/); //split the the time into min and sec in an array
   var m = timeArry[0]; //set min to 25
@@ -56,6 +65,10 @@ function startTimer() {
 }
 
 function checkStatus(a){
+  pomoCounter--;
+  if(pomoCounter = 0){
+    alert('done');
+  }
   if(a){
     return workStatus = false;
   }
@@ -113,18 +126,6 @@ function alertUser() {
   });
 }
 
-startBtn.on("click", function () {
-  startBtn.prop("disabled", true);
-  timer = setInterval(startTimer, 1000);
-});
-pauseBtn.on("click", pauseTimer);
-resetBtn.on("click", resetTimer);
-
-$(document).ready(function () {
-  $('.modal').modal();
-  $('.sidenav').sidenav();
-});
-
 function genDadJoke() {
   // $('#t').remove();
   // $('#p').remove();
@@ -163,3 +164,86 @@ function genYTVid() {
     console.error(err);
   });
 }
+
+function createPreset() {
+  presetsArry = savedPresets;
+  var tempArry = [pName.val(), pTime.val()];
+  console.log(presetsArry.includes(tempArry));
+  console.log(tempArry);
+  console.log(savedPresets);
+  var found = savedPresets.some(function(arr) {
+    return arr.every(function(prop, index) {
+      return tempArry[index] === prop
+    })
+  });
+  console.log(found);
+  if(!found){
+    presetsArry.push(tempArry);
+    localStorage.setItem("presets",JSON.stringify(presetsArry));
+  }
+  //console.log(presetsArry);
+  loadPreset((presetsArry.length-1));
+}
+
+function loadPreset(id) {
+  console.log(savedPresets[id]);
+  var tempArry = savedPresets[id];
+  var presetName = tempArry[0];
+  var presetTime = tempArry[1];
+  var timeArry = presetTime.split(/[:]+/);
+  var hours = timeArry[0];
+  var mins = timeArry[1];
+  var pomoTime = parseInt(hours) * 60; //convert hours to min and get total mins
+
+  if(savedPresets){
+    $('#presets').append("<select id='savedPresets'>");
+    $('#savedPresets').append(`<option value="" disabled selected>Choose your preset</option>`);
+    for(var i = 0; i < savedPresets.length; i++){
+      var tempArry = savedPresets[i];
+      $('#savedPresets').append(`<option value='${tempArry[1]}'>${tempArry[0]}`);
+    }
+    $('select#savedPresets').on('change', function(e) {
+      console.log();
+      pName.val(this.options[this.selectedIndex].text);
+      pTime.val(e.target.value);
+    });
+  }
+  if(parseInt(hours) <= 4){
+    //work for 8 25 min periods then have 8 5 min periods
+    pomoCounter = pomoTime/60; //8
+
+    timerEl.text("25:00");
+  
+  } else if(parseInt(hours) > 4){
+    // work for 8 25 min periods have 8 5 min breaks periods and then take a half hour lunch then for for another same
+    console.log(pomoTime / 60)
+    pomoCounter = pomoTime/60; //16
+
+    timerEl.text("25:00");
+  }
+}
+
+startBtn.on("click", function () {
+  startBtn.prop("disabled", true);
+  timer = setInterval(startTimer, 1000);
+});
+pauseBtn.on("click", pauseTimer);
+resetBtn.on("click", resetTimer);
+
+pSubmitBtn.on("click", function(e){
+  e.preventDefault();
+  if (pName.val() === "" || pTime.val() === "") {
+    console.log("You must enter a name for both"); //eventuall create modal
+    return;
+  }
+  createPreset();
+});
+
+
+
+$(document).ready(function () {
+  loadPreset(savedPresets.length-1);
+  $('select').formSelect();
+  $('.modal').modal();
+  $('.sidenav').sidenav();
+});
