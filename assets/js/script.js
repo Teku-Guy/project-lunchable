@@ -6,7 +6,7 @@ var timerEl = $("#timer");
 var pName = $('#pName');
 var pTime = $('#pTime');
 var pSubmitBtn = $('#pSubmit');
-var savedPresets = JSON.parse(localStorage.getItem("presets")) || [];
+var savedPresets = JSON.parse(localStorage.getItem("presets")) || [['Default', '4:00']];
 var presetsArry = [];
 
 var timer;
@@ -167,9 +167,21 @@ function genYTVid() {
 
 function createPreset() {
   presetsArry = savedPresets;
-  presetsArry.push([pName.val(), pTime.val()]);
-  localStorage.setItem("presets",JSON.stringify(presetsArry));
-  console.log(presetsArry);
+  var tempArry = [pName.val(), pTime.val()];
+  console.log(presetsArry.includes(tempArry));
+  console.log(tempArry);
+  console.log(savedPresets);
+  var found = savedPresets.some(function(arr) {
+    return arr.every(function(prop, index) {
+      return tempArry[index] === prop
+    })
+  });
+  console.log(found);
+  if(!found){
+    presetsArry.push(tempArry);
+    localStorage.setItem("presets",JSON.stringify(presetsArry));
+  }
+  //console.log(presetsArry);
   loadPreset((presetsArry.length-1));
 }
 
@@ -185,13 +197,18 @@ function loadPreset(id) {
 
   if(savedPresets){
     $('#presets').append("<select id='savedPresets'>");
-    $('#savedPresets').append("<option value='' disabled selected>Choose your preset</option>");
+    $('#savedPresets').append(`<option value="" disabled selected>Choose your preset</option>`);
     for(var i = 0; i < savedPresets.length; i++){
       var tempArry = savedPresets[i];
       $('#savedPresets').append(`<option value='${tempArry[1]}'>${tempArry[0]}`);
     }
+    $('select#savedPresets').on('change', function(e) {
+      console.log();
+      pName.val(this.options[this.selectedIndex].text);
+      pTime.val(e.target.value);
+    });
   }
-  if(parseInt(hours) < 4){
+  if(parseInt(hours) <= 4){
     //work for 8 25 min periods then have 8 5 min periods
     pomoCounter = pomoTime/60; //8
 
@@ -221,6 +238,8 @@ pSubmitBtn.on("click", function(e){
   }
   createPreset();
 });
+
+
 
 $(document).ready(function () {
   loadPreset(savedPresets.length-1);
