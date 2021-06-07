@@ -112,8 +112,6 @@ function alertUser() {
   //opens modal
   $('.modal').modal('open');
   $('#dismiss').on('click', function () {
-    genDadJoke();
-    genYTVid();
     alarm.pause();
     if(!workStatus){
       genDadJoke();
@@ -151,6 +149,7 @@ function genDadJoke() {
 
 function genYTVid() {
  //$('#p1').remove();
+  q = makeid(3);
   fetch(ytURL)
   .then(function(response) {
     return response.json();
